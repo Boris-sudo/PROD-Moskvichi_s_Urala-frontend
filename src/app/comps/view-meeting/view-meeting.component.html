@@ -1,0 +1,67 @@
+<main class="main">
+  <div class="main-content">
+
+    <div *ngIf="!order.status!" class="buttons-container">
+      <button (click)="cancelOrder()" class="btn btn-delete">Удалить</button>
+      <button (click)="showTimeMenu()" class="btn btn-move-date">Перенести</button>
+    </div>
+
+    <div *ngIf="order.status!" class="rating-container">
+      <p>Оцените проведенную встречу</p>
+      <div class="rating-card">
+        <svg *ngFor="let star of all_stars; index as i" (click)="chooseStar(i+1)" [class.active-star]="i<order.rate!" viewBox="0 0 84 83" xmlns="http://www.w3.org/2000/svg">
+          <path d="M47.2549 6.09131L52.0644 21.659C53.1648 25.2208 56.4577 27.65 60.1857 27.65H76.4713C81.7319 27.65 83.9906 34.3262 79.8107 37.5202L66.038 48.0442C63.208 50.2067 62.0262 53.9042 63.0776 57.3071L68.1933 73.8663C69.774 78.9827 63.854 83.1113 59.599 79.86L47.1608 70.3557C44.1141 68.0276 39.8859 68.0276 36.8392 70.3557L24.401 79.86C20.146 83.1113 14.226 78.9827 15.8067 73.8663L20.9225 57.3071C21.9738 53.9042 20.792 50.2067 17.962 48.0442L4.18933 37.5202C0.00935364 34.3261 2.2681 27.65 7.52869 27.65H23.8143C27.5423 27.65 30.8352 25.2208 31.9356 21.659L36.7451 6.09131C38.3419 0.922592 45.6581 0.922592 47.2549 6.09131Z" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div id="map2" class="map"></div>
+    </div>
+
+    <div class="order-content">
+      <div class="box">
+        <p class="p light-p">Адрес встречи:</p>
+        <p class="p">{{order.address.name}}</p>
+      </div>
+      <div class="box">
+        <p class="p light-p">Дата встречи:</p>
+        <p class="p">{{order.date}}</p>
+      </div>
+      <div class="box">
+        <p class="p light-p">Представитель Тинькофф:</p>
+        <p class="p">{{order.employer_name}}</p>
+        <p class="p">{{order.employer_phone}}</p>
+      </div>
+      <div class="box">
+        <p class="p light-p">Не забудьте взять с собой:</p>
+        <div class="docs-container">
+          <p class="p" *ngFor="let doc of documents">{{doc.name}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="move-date-container" id="time-menu">
+    <div class="move-date-box">
+      <p class="box-header">Назначьте время встречи</p>
+
+      <div class="rollbar-container">
+        <div class="rollbar-content">
+          <div class="date-card" *ngFor="let date of near_dates" [class.chosen-date]="date.date === chosen_date" (click)="chosen_date = date.date"><p>{{date.title}}</p></div>
+        </div>
+      </div>
+
+      <div class="times-container">
+        <div class="time-card" *ngFor="let time of all_times" (click)="chooseTime(time)" [class.chosen-time]="chosen_time === time" [class.available]="checkTimeAvailable(time)"><p>{{time}}</p></div>
+      </div>
+
+      <div class="buttons-container no-padding">
+        <button class="btn btn-cancel" (click)="closeTimeMenu()">Отменить</button>
+        <button class="btn btn-move-date" (click)="changeOrderTime()">Перенести</button>
+      </div>
+    </div>
+
+  </div>
+</main>

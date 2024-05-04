@@ -1,0 +1,120 @@
+<main class="window-main">
+  <main class="main">
+    <div class="steps-container">
+      <div class="steps">
+        <ul>
+          <li [class.active]="choose_page >= 1"><span>1</span></li>
+          <li [class.active]="choose_page >= 2"><span>2</span></li>
+          <li [class.active]="choose_page >= 3"><span>3</span></li>
+          <li [class.active]="choose_page >= 4"><span>4</span></li>
+          <li [class.active]="choose_page >= 5"><span>5</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+      <form id="form-roller" class="form-container">
+        <div class="form-roller">
+          <div id="form-card1" class="create-form">
+            <div class="box">
+              <p class="box-header">Выберите продукт</p>
+              <div (click)="chosen_product === product? chosen_product = undefined : chosen_product = product" class="create-box-card" *ngFor="let product of products">
+                <input [checked]="chosen_product === product" class="create-box-input" type="checkbox" >
+                <p class="create-box-p">{{product.name}}</p>
+              </div>
+            </div>
+
+            <div class="box">
+              <p class="box-header">Ознакомьтесь с недостающими документами. Их нужно будет принести на встречу</p>
+              <ul class="docs-box">
+                <li class="create-docs-card" *ngFor="let doc of getChosenDocs()">
+                  <p [class.crossed-text]="doesDocUploaded(doc.id)" class="create-box-p">{{doc.name}}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="form-card2" class="create-form">
+            <div class="box">
+              <p class="box-header">Назначьте место встречи</p>
+              <div class="map-error" id="map-error"></div>
+              <div class="map" id="map" #yamaps></div>
+              <div *ngIf="offer_locations.length>0" class="offer-locations-container">
+                <p style="font-weight: 600; font-size: 18px; color: rgba(var(--black), .8);">Предыдущие места встреч</p>
+                <div class="offer-location-card" *ngFor="let loc of offer_locations">
+                  <p class="offer-location-text" (click)="changeLocationWithLoc(loc)">{{loc.name}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="form-card3" class="create-form">
+            <div class="box">
+              <p class="box-header">Назначьте время встречи</p>
+
+              <div class="rollbar-container">
+                <div class="rollbar-content">
+                  <div class="date-card" *ngFor="let date of near_dates" [class.chosen-date]="date.date === chosen_date" (click)="chosen_date = date.date"><p>{{date.title}}</p></div>
+                </div>
+              </div>
+
+              <div class="times-container">
+                <div class="time-card" *ngFor="let time of all_times" (click)="chooseTime(time)" [class.chosen-time]="chosen_time === time" [class.available]="checkTimeAvailable(time)"><p>{{time}}</p></div>
+              </div>
+            </div>
+          </div>
+          <div id="form-card4" class="create-form">
+            <div class="box">
+              <div class="box">
+                <p class="box-header">Кто будет на встрече</p>
+              </div>
+
+              <div class="box">
+                <label class="create-box-card">
+                  <input class="create-box-input" (click)="chosen_pred = null" [checked]="chosen_pred === null" type="checkbox">
+                  <p class="create-box-p">Я</p>
+                </label>
+                <label class="create-box-card">
+                  <input class="create-box-input" (click)="chosen_pred != null? chosen_pred=null : chosen_pred=''" [checked]="chosen_pred !== null" type="checkbox">
+                  <p class="create-box-p">Мой представитель</p>
+                </label>
+                <label class="chosen-pred-label" *ngIf="chosen_pred !== null">
+                  <input placeholder="" class="chosen-pred-input" [(ngModel)]="chosen_pred" autocomplete="off" name="chosen pred" type="text">
+                  <span class="chosen-pred-span">Введите ФИО представителя</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div id="form-card5" class="create-form">
+            <div class="box">
+              <div class="box">
+                <p class="box-header">Проверьте данные и подтвердите встречу</p>
+              </div>
+
+              <div class="preview-content">
+                <div class="preview-card">
+                  <p class="p">Продукт:</p>
+                  <p class="p p-light">{{chosen_product?.name}}</p>
+                </div>
+                <div class="preview-card">
+                  <p class="p">Дата встречи:</p>
+                  <p class="p p-light">{{getFinalDate()}}</p>
+                </div>
+                <div class="preview-card">
+                  <p class="p">Кто будет на встрече:</p>
+                  <p class="p p-light">{{chosen_pred === null? 'вы едете сами' : chosen_pred}}</p>
+                </div>
+              </div>
+
+              <button (click)="submitMeeting()" class="submit-btn">Назначить</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="buttons-container">
+        <button id="prev-make-meeting-btn" (click)="choosePage(choose_page - 1)" type="button" class="btn prev-btn"><img class="arrow-img img-rev" alt="arrow image" src="assets/arrow.svg"> Назад</button>
+        <button id="next-make-meeting-btn" (click)="choosePage(choose_page + 1)" type="button" class="btn next-btn">Далее <img class="arrow-img" alt="arrow image" src="assets/arrow.svg"></button>
+      </div>
+    </div>
+  </main>
+</main>

@@ -1,0 +1,26 @@
+<main class="window-main">
+  <div class="main">
+    <div class="main-content">
+
+      <div class="image-container">
+        <img class="image" src="assets/profile-image.svg" alt="profile image">
+      </div>
+      <div class="info-container">
+        <p class="name">{{profile.name}}</p>
+        <p class="phone">{{profile.phone}}</p>
+        <p id="city-name" class="phone"></p>
+      </div>
+      <div class="logout-container">
+        <p class="logout-text" (click)="logout()">Log out</p>
+      </div>
+      <div class="docs-container">
+        <p class="docs-title">Ваши документы</p>
+        <div class="docs-card" *ngFor="let doc of documents">
+          <p class="doc-name">{{doc.document.name}}</p>
+          <p class="doc-date">{{doc.date}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>

@@ -1,0 +1,54 @@
+
+<main class="main">
+  <div class="main-content">
+
+    <div *ngIf="this.active_orders.length > 0" class="orders-container">
+      <div (click)="router.navigate('view/'+order.id)" *ngFor="let order of this.get_active_orders_subarray()" class="order-card">
+        <div class="clock-div">
+          <img class="img" src="assets/clock.svg" alt="clock svg image">
+          <p class="p">Назначена встреча</p>
+        </div>
+        <div *ngIf="order.status2 !== ''" [style]="'color: rgba('+(order.status2! === 'Представитель прибыл'? 'var(--green)' : 'var(--orange)')+');'" class="order-status">{{order.status2}}</div>
+        <div class="orders-block mt-10">
+          <p class="light-p p">Адрес встречи</p>
+          <p class="p">{{order.address.name}}</p>
+        </div>
+        <div class="orders-block">
+          <p class="light-p p">Дата встречи</p>
+          <p class="p">{{this.getDate(order.date)}}</p>
+        </div>
+      </div>
+      <div class="buttons-container">
+        <button class="btn hov-btn" [disabled]="active_orders_index===0" (click)="changeActiveOrderIndex(-1)"><img class="img img-rev" src="assets/arrow.svg" alt="arrow svg image"></button>
+        <button class="btn hov-btn" [disabled]="active_orders_index>=(active_orders.length-orders_show_count)/orders_show_count" (click)="changeActiveOrderIndex(1)"><img class="img" src="assets/arrow.svg" alt="arrow svg image"></button>
+      </div>
+    </div>
+
+    <div class="new-order-button-container">
+      <button (click)="router.navigate('create')" class="new-order-button hov-btn">Назначить встречу</button>
+    </div>
+
+    <div *ngIf="history_orders.length > 0" class="orders-container">
+      <p class="orders-container__header">История доставок</p>
+      <div (click)="router.navigate('view/'+order.id)" *ngFor="let order of this.get_history_orders_subarray()" class="order-card">
+        <div class="clock-div">
+          <p class="p">Прошедшая встреча</p>
+        </div>
+        <div *ngIf="order.status2 !== ''" [style]="'color: rgba('+(order.status2! === 'Встреча отменена'? 'var(--red)' : 'var(--orange)')+');'" class="order-status">{{order.status2}}</div>
+        <div class="orders-block mt-10">
+          <p class="light-p p">Адрес встречи</p>
+          <p class="p">{{order.address.name}}</p>
+        </div>
+        <div class="orders-block">
+          <p class="light-p p">Дата встречи</p>
+          <p class="p">{{this.getDate(order.date)}}</p>
+        </div>
+      </div>
+      <div class="buttons-container">
+        <button class="btn hov-btn" [disabled]="history_orders_index===0" (click)="changeHistoryOrderIndex(-1)"><img class="img img-rev" src="assets/arrow.svg" alt="arrow svg image"></button>
+        <button class="btn hov-btn" [disabled]="history_orders_index>=(history_orders.length-orders_show_count)/orders_show_count" (click)="changeHistoryOrderIndex(1)"><img class="img" src="assets/arrow.svg" alt="arrow svg image"></button>
+      </div>
+    </div>
+
+  </div>
+</main>

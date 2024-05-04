@@ -1,0 +1,57 @@
+.main {
+  width:          100vw;
+  height:         var(--top-bar-height);
+  padding:        10px 20px;
+  background: rgb(var(--top-bar-color));
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+  display:        flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: var(--max-main-width);
+  align-items: center;
+  align-content: center;
+}
+
+/*noinspection CssInvalidPropertyValue*/
+.profile__link{
+  text-wrap: nowrap;
+  color: rgb(var(--blue));
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.logo {
+  padding: 0 20px;
+  cursor: pointer!important;
+}
+
+.profile__container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 440px) {
+  .profile__link {
+    display: none;
+  }
+}
+
+.profile__img {
+  --scale: var(--profile-img-size);
+  height: var(--scale);
+  width: var(--scale);
+}
+
+:host {
+  --profile-img-size: 25px;
+}

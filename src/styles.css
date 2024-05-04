@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway");
+@import url("https://fonts.googleapis.com/css2?family=Rubik");
+@import url('https://fonts.googleapis.com/css2?family=Dosis');
+
+html, body {
+  width:           100vw;
+  min-height:      100vh;
+  scroll-behavior: smooth;
+  overflow-y:      hidden;
+  overflow-x:      hidden;
+  color:           rgba(var(--main-text-color));
+}
+
+body {
+  background-color: rgba(var(--main-background-color));
+  display:          flex;
+  flex-wrap:        wrap;
+  overflow-y:       scroll;
+  position:         relative;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width:   0;
+}
+
+* {
+  line-height:                 100%;
+  box-sizing:                  border-box;
+  margin:                      0;
+  padding:                     0;
+  caret-color:                 transparent;
+  font-family:                 var(--ff-dosis);
+  -webkit-tap-highlight-color: transparent;
+}
+
+li {
+  list-style-type: none;
+}
+
+input, button, select {
+  outline-offset: 0;
+  outline:        0;
+}
+
+img {
+  -moz-user-select:    none;
+  -webkit-user-select: none;
+  user-select:         none;
+  pointer-events:      none;
+}
+
+:root { /* fonts */
+  --ff-raleway: "Raleway", sans-serif;
+  --ff-rubik:   "Rubik", sans-serif;
+  --ff-ubuntu:  "Ubuntu", sans-serif;
+  --ff-dosis:   "Dosis", sans-serif;
+}
+
+:root { /* colors */
+  --black:            0, 0, 0;
+  --white:            255, 255, 255;
+  --red:              243, 6, 6;
+  --green:            0 128 0;
+  --blue:             71, 114, 250;
+  --gray:             246, 247, 248;
+  --dark-gray:        220, 220, 220;
+  --yellow:           255, 221, 45;
+  --orange:            239, 124, 3;
+
+  --input-background: 36, 74, 127, .06;
+}
+
+:root { /* [white-theme] */
+  --top-bar-color:         var(--white);
+  --main-background-color: var(--gray);
+  --main-text-color:       var(--black);
+}
+
+:root {
+  --top-bar-height:      70px;
+  --max-main-width:      1440px;
+  --input-button-height: 56px;
+}

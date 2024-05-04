@@ -1,0 +1,105 @@
+.main {
+  width:           100%;
+  height:          calc(100vh - var(--top-bar-height));
+  display:         flex;
+  align-items:     center;
+  align-content:   center;
+  justify-content: center;
+  padding:         10px;
+}
+
+.content {
+  width:         var(--login-box-width);
+  max-width:     100%;
+  height:        fit-content;
+  padding:       48px;
+  background:    rgb(var(--white));
+  border-radius: 16px;
+}
+
+@media screen and (max-width: 800px) {
+  .content {
+    width:  100%;
+    height: 100%;
+  }
+
+  .main {
+    padding: 0;
+  }
+}
+
+.buttons-container {
+  width:          100%;
+  margin:         24px 0 0;
+  display:        flex;
+  flex-direction: column;
+  gap:            20px;
+}
+
+.input {
+  width:          100%;
+  height:         var(--input-height);
+  display:        flex;
+  flex-direction: row;
+  align-items:    center;
+  align-content:  center;
+  background:     rgba(var(--input-background));
+  border-radius:  8px;
+  padding:        19px 16px 0;
+  outline:        none;
+  border:         none;
+  font-family:    var(--ff-rubik);
+  caret-color:    rgb(var(--black));
+}
+
+.invalid {
+  color:      rgb(var(--red)) !important;
+  box-shadow: inset 0 0 0 1px rgb(var(--red)) !important;
+}
+
+.label {
+  position: relative;
+  width:    100%;
+}
+
+.span {
+  position:            absolute;
+  line-height:         100%;
+  left:                16px;
+  top:                 20px;
+  max-width:           calc(100% - 32px);
+  color:               rgba(var(--black), .48);
+  text-overflow:       ellipsis;
+  overflow:            hidden;
+  white-space:         nowrap;
+  pointer-events:      none;
+  transition:          all .25s;
+  transform-origin:    left;
+  transition-property: transform, color, font-size;
+}
+
+.input:focus, .input:not(:placeholder-shown) {
+  background:         rgb(var(--white));
+  box-shadow:         inset 0 0 0 1px rgb(var(--black));
+  -webkit-appearance: none;
+}
+
+.input:focus ~ .span, .input:not(:placeholder-shown) ~ .span {
+  transform: translateY(-10px) scale(.87);
+  color:     rgba(var(--black), .8);
+}
+
+.send-button {
+  height:        var(--input-height);
+  background:    rgb(var(--yellow));
+  border-radius: 8px;
+  border:        none;
+  font-size:     20px;
+  font-weight:   600;
+  cursor:        pointer;
+}
+
+:host {
+  --login-box-width: 500px;
+  --input-height:    var(--input-button-height);
+}

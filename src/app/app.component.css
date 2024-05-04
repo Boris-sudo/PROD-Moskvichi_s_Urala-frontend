@@ -1,0 +1,5 @@
+.content {
+  width:      100vw;
+  min-height: calc(100vh - var(--top-bar-height));
+  height:     fit-content;
+}

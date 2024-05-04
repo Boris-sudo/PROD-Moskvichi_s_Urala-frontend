@@ -1,0 +1,108 @@
+.window-main {
+  height:     calc(100vh - var(--top-bar-height));
+  overflow-y: scroll;
+}
+
+.main {
+  height:          fit-content;
+  padding:         calc(var(--image-size) / 2 + 50px) 0 30px;
+  width:           100%;
+  display:         flex;
+  justify-content: center;
+}
+
+.logout-container {
+  width:           100%;
+  display:         flex;
+  justify-content: center;
+  flex-direction:  row;
+  padding:         0 20px;
+}
+
+.logout-text {
+  font-size:       15px;
+  text-decoration: underline;
+  color:           rgb(var(--red));
+  cursor:          pointer;
+}
+
+.main-content {
+  background:     rgb(var(--white));
+  width:          100%;
+  max-width:      var(--max-main-width);
+  height:         fit-content;
+  display:        flex;
+  align-items:    center;
+  align-content:  center;
+  flex-direction: column;
+  border-radius:  16px;
+  padding:        0 10px 30px;
+}
+
+.image-container {
+  width:         var(--image-size);
+  height:        calc(var(--image-size) / 2);
+  position:      relative;
+  margin-bottom: 40px;
+}
+
+.image {
+  position: absolute;
+  bottom:   0;
+  left:     0;
+  width:    var(--image-size);
+  height:   var(--image-size);
+}
+
+.name {
+  font-size:     40px !important;
+  font-weight:   600;
+  text-align:    center;
+  margin-bottom: 10px;
+}
+
+.docs-title {
+  margin-bottom: 5px;
+  font-size:     25px;
+}
+
+.phone {
+  font-family: var(--ff-rubik);
+  font-size:   20px;
+  text-align:  center;
+}
+
+.docs-container {
+  margin-top:      20px;
+  width:           100%;
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center;
+  gap:             10px
+}
+
+.docs-card {
+  padding:         10px 15px;
+  border-radius:   8px;
+  background:      rgb(var(--gray));
+  color:           rgb(var(--black));
+  font-size:       18px;
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+}
+
+.doc-date {
+  color: rgba(var(--green));
+}
+
+@media screen and (max-width: 500px) {
+  .main-content {
+    border-radius: 0;
+  }
+}
+
+:host {
+  --max-main-width: 700px;
+  --image-size:     200px;
+}
